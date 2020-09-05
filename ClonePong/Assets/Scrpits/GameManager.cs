@@ -29,10 +29,4 @@ public class GameManager : MonoBehaviour
         var comBrick = Instantiate(Brick, comPosition, Quaternion.identity).GetComponent<Brick>();
         comBrick.SetPlayer(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
