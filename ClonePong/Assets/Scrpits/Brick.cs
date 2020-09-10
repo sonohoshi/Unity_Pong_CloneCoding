@@ -6,6 +6,7 @@ public class Brick : MonoBehaviour
 {
     private readonly float speed = 10f;
     private bool isPlayer;
+    private bool isMoving = false;
     private Transform ball;
 
     void Awake()
@@ -28,8 +29,7 @@ public class Brick : MonoBehaviour
         }
         else
         {
-            var movePos = Vector2.Lerp(transform.position, ball.position, 0.25f);
-            transform.Translate(0, movePos.y * Time.deltaTime, 0);
+            AIMoving();
         }
     }
 
@@ -37,5 +37,15 @@ public class Brick : MonoBehaviour
     {
         this.isPlayer = isPlayer;
         return this.isPlayer;
+    }
+
+    void AIMoving()
+    {
+        float count = 0f;
+        Vector2 pastPos = transform.position;
+
+        var movePos = Vector2.Lerp(ball.position, transform.position, 0.25f);
+        movePos = movePos.normalized;
+        transform.Translate(0, movePos.y * Time.deltaTime, 0);
     }
 }

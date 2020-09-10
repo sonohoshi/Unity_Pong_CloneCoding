@@ -9,10 +9,18 @@ public class Ball : MonoBehaviour
     
     private float radius;
     private Vector2 direction;
+
+    void NewGame()
+    {
+        Awake();
+        
+    }
     
     void Awake()
     {
-        direction = Vector2.one.normalized;
+        float x = Random.Range(0, 2) == 0 ? -1 : 1;
+        float y = Random.Range(0, 2) == 0 ? -1 : 1;
+        direction = new Vector2(x, y);
         radius = transform.localScale.x / 2;
     }
     
@@ -39,7 +47,8 @@ public class Ball : MonoBehaviour
 
         if (col.CompareTag("Wall"))
         {
-            //Somthing To-Do
+            transform.position = new Vector2(0, 0);
+            NewGame();
         }
     }
 }
