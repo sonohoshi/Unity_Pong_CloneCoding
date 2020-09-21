@@ -43,9 +43,15 @@ public class Brick : MonoBehaviour
     {
         float count = 0f;
         Vector2 pastPos = transform.position;
+        var distance = Vector2.SqrMagnitude((Vector2) ball.position - pastPos);
+        
+        if (distance <= 5)
+        {
+            return;
+        }
 
         var movePos = Vector2.Lerp(ball.position, transform.position, 0.25f);
         movePos = movePos.normalized;
-        transform.Translate(0, movePos.y * Time.deltaTime, 0);
+        transform.Translate(0, movePos.y * Time.deltaTime * speed, 0);
     }
 }
